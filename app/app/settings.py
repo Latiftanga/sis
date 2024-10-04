@@ -44,7 +44,7 @@ INSTALLED_APPS = [
 
     #Local apps
     'core.apps.CoreConfig',
-    'staff.apps.StaffConfig',
+    'portal.apps.PortalConfig',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +53,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    # 'core.middleware.LoginRequiredMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -135,3 +136,25 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'core.User'
+
+LOGOUT_REDIRECT_URL = '/signin/'
+LOGIN_URL = '/signin/'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+# Set the session to expire after a certain period of inactivity (in seconds)
+SESSION_COOKIE_AGE = 1800  # 30 minutes
+
+# Set the session to expire when the user closes the browser
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+# Optionally, ensure the session is invalidated after a certain amount of time
+SESSION_SAVE_EVERY_REQUEST = True
+
+# Looking to send emails in production? Check out our Email API/SMTP product!
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+EMAIL_HOST_USER = '74dbe9b9617c32'
+EMAIL_HOST_PASSWORD = '92634d3ebb008b'
+EMAIL_PORT = '2525'

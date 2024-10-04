@@ -1,0 +1,91 @@
+{% extends 'layout/main.html' %}
+{% load static %}
+{# Load the tag library #}
+{% load django_bootstrap5 %}
+
+{% block extra_js %}
+  <script>
+    $('#id_date_of_birth').datepicker({
+      uiLibrary: 'bootstrap5',
+      format: 'yyyy-mm-dd'
+    })
+  </script>
+{% endblock %}
+
+{% block content %}
+  <div class="app-content-header">
+    <!-- begin::Container -->
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Toolbar begins -->
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+          <h5 class="h5">{{ page_title }}</h5>
+          <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+              {% if page_action == 'edit' %}
+                <a class="btn btn-sm btn-outline-success" href="{% url 'portal:teacher-detail' page_id %}">
+                  <i class="bi bi-chiveron-left"></i> Back
+                </a>
+              {% else %}
+                <a class="btn btn-sm btn-outline-success" href="{% url 'portal:teachers' %}">
+                  <i class="bi bi-chiveron-left"></i> Back
+                </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <!-- Toolbar ends -->
+      </div>
+    </div>
+  </div> <!-- end::App Content Header --> <!-- begin::App Content -->
+  <div class="app-content">
+    <!-- begin::Container -->
+    {% bootstrap_messages %}
+
+    <div class="container-fluid">
+      {# Display a form #}
+      <form method="post" class="needs-validation col-md-7 container" novalidate>
+        {% csrf_token %}
+        <div class="row g-3">
+          <div class="col-sm-6">
+            {% bootstrap_field form.first_name placeholder=false %}
+          </div>
+
+          <div class="col-sm-6">
+            {% bootstrap_field form.other_names placeholder=false %}
+          </div>
+
+          <div class="col-sm-6">
+            {% bootstrap_field form.gender placeholder=false %}
+          </div>
+
+          <div class="col-sm-6">
+            {% bootstrap_field form.date_of_birth placeholder=false %}
+          </div>
+
+          <div class="col-sm-6">
+            {% bootstrap_field form.nationality placeholder=false %}
+          </div>
+          <div class="col-sm-6">
+            {% bootstrap_field form.national_id placeholder=false %}
+          </div>
+
+          <div class="col-sm-6">
+            {% bootstrap_field form.religion placeholder=false %}
+          </div>
+          <div class="col-sm-6">
+            {% bootstrap_field form.religious_denomination placeholder=false %}
+          </div>
+
+          <div class="col-sm-6">
+            {% bootstrap_field form.social_security_no placeholder=false %}
+          </div>
+          <div class="col-sm-6">
+            {% bootstrap_field form.health_insurance_no placeholder=false %}
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Submit</button>
+      </form>
+    </div>
+  </div> <!-- end::App Content -->
+{% endblock %}

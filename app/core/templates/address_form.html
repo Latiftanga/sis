@@ -1,0 +1,103 @@
+{% extends 'layout/main.html' %}
+{% load static %}
+{# Load the tag library #}
+{% load django_bootstrap5 %}
+
+{% block extra_js %}
+  <script>
+    $('#id_date_of_birth').datepicker({
+      uiLibrary: 'bootstrap5',
+      format: 'yyyy-mm-dd'
+    })
+  </script>
+{% endblock %}
+
+{% block content %}
+  <div class="app-content-header">
+    <!-- begin::Container -->
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Toolbar begins -->
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+          <h5 class="h5">{{ page_title }}</h5>
+          <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+              {% if page_action == 'edit' %}
+                <a class="btn btn-sm btn-outline-success" href="{% url 'portal:teacher-detail' page_id %}"><i class="bi bi-chiveron-left"></i> Back</a>
+              {% else %}
+                <a class="btn btn-sm btn-outline-success" href="{% url 'portal:teachers' %}"><i class="bi bi-chiveron-left"></i> Back</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <!-- Toolbar ends -->
+      </div>
+    </div>
+  </div> <!-- end::App Content Header --> <!-- begin::App Content -->
+  <div class="app-content">
+    <div class="col-md-7 container">
+      <!-- begin::Container -->
+      {% bootstrap_messages %}
+      <ul class="nav mb-3 justify-content-between">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#"><span class="fs-5"><i class="bi bi-1-circle-fill text-danger"></i> Personal</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-current="page" href="#"><span class="fs-5"><i class="bi bi-2-circle-fill text-warning"></i> Contact</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-current="page" href="#"><span class="fs-5"><i class="bi bi-3-circle-fill text-success"></i> Account</span></a>
+        </li>
+      </ul>
+      <div class="card-body">
+        <form method="post" class="needs-validation" novalidate>
+          {% csrf_token %}
+          <div class="row g-3">
+            <div class="col-sm-6">
+              {% bootstrap_field form.house_number placeholder=false %}
+            </div>
+
+            <div class="col-sm-6">
+              {% bootstrap_field form.street_name placeholder=false %}
+            </div>
+
+            <div class="col-sm-6">
+              {% bootstrap_field form.landmark placeholder=false %}
+            </div>
+
+            <div class="col-sm-6">
+              {% bootstrap_field form.city placeholder=false %}
+            </div>
+
+            <div class="col-sm-6">
+              {% bootstrap_field form.district placeholder=false %}
+            </div>
+            <div class="col-sm-6">
+              {% bootstrap_field form.region placeholder=false %}
+            </div>
+
+            <div class="col-sm-6">
+              {% bootstrap_field form.gps_address placeholder=false %}
+            </div>
+            <div class="col-sm-6">
+              {% bootstrap_field form.postal_code placeholder=false %}
+            </div>
+
+            <div class="col-sm-6">
+              {% bootstrap_field form.mobile placeholder=false %}
+            </div>
+            <div class="col-sm-6">
+              {% bootstrap_field form.telephone placeholder=false %}
+            </div>
+            <div class="col-sm-6">
+              <a type="submit" class="btn btn-secondary" href="{% url 'portal:teachers' %}">Back</a>
+            </div>
+            <div class="col-sm-6 text-end">
+              <button type="submit" class="btn btn-primary">Next</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div> <!-- end::App Content -->
+{% endblock %}

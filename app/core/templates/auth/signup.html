@@ -1,0 +1,32 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+  <form method="post" novalidate>
+    {% csrf_token %}
+    <ul class="nav nav-tabs justify-content-center mb-5">
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">
+          <i class="bi bi bi-shield-check"></i> &nbsp; Verify
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="#" aria-current="page" aria-disabled="true">
+          <i class="bi bi-person"></i> &nbsp; Account
+        </a>
+      </li>
+    </ul>
+    {% if msg %}
+      <div class="mb-3 text-danger text-center">{{ msg|safe }}</div>
+    {% endif %}
+    {% bootstrap_field form.email layout='floating' show_help=false placeholder='Email' %}
+    {% bootstrap_field form.password1 layout='floating' show_help=false placeholder='Password' %}
+    {% bootstrap_field form.password2 layout='floating' show_help=false placeholder='Confirm Password' %}
+
+    <button class="btn btn-primary w-100 py-2" type="submit">Continue</button>
+    <p class="mt-3 mb-3 text-body-secondary text-center">
+      Have Account? <a href="{% url 'core:signin' %}">Sign In</a>
+    </p>
+  </form>
+{% endblock %}

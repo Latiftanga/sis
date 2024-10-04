@@ -1,0 +1,63 @@
+{% extends 'layout/main.html' %}
+
+{% block content %}
+  <!-- begin::Container -->
+  <div class="app-content-header">
+    <div class="container-fluid">
+      <!-- Toolbar begins -->
+      <div class="container-fluid">
+        <div class="row">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center p-2 pb-2 mb-3">
+            <h5>{{ page_title }} {{ page_action }}</h5>
+            <div class="btn-toolbar mb-2 mb-md-0">
+              <div class="btn-group me-2">
+                <a class="btn btn-sm btn-outline-success" href="#"><i class="bi bi-plus-square"></i> Action</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Toolbar ends -->
+    </div>
+  </div>
+  <div class="container-fluid">
+    <!-- begin::Row -->
+    <div class="row">
+      <div class="col-12 col-sm-6 col-md-3">
+        <a class="info-box text-decoration-none text-reset" href="{% url 'portal:teachers' %}">
+          <span class="info-box-icon text-bg-primary shadow-sm"><i class="bi bi-mortarboard-fill"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">Teachers</span>
+            <span class="info-box-number">
+              {{ teacher_count }}
+            </span>
+          </div>
+        </a>
+      </div>
+      <div class="col-12 col-sm-6 col-md-3">
+        <a class="info-box text-decoration-none text-reset" href="#">
+          <span class="info-box-icon text-bg-danger shadow-sm"><i class="bi bi-people"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">Students</span> <span class="info-box-number">41,410</span>
+          </div>
+        </a>
+      </div>
+      <div class="col-12 col-sm-6 col-md-3">
+        <a class="info-box text-decoration-none text-reset" href="#">
+          <span class="info-box-icon text-bg-success shadow-sm"><i class="bi bi-house-door"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">Classes</span> <span class="info-box-number">760</span>
+          </div>
+        </a>
+      </div>
+      <div class="col-12 col-sm-6 col-md-3">
+        <a class="info-box text-decoration-none text-reset" href="#">
+          <span class="info-box-icon text-bg-warning shadow-sm"><i class="bi bi-table"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-text">Attendance</span> <span class="info-box-number">2,000</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div> <!-- end::Container -->
+{% endblock %}

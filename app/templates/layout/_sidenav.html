@@ -1,0 +1,35 @@
+{% load static %}
+<aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
+  <!-- begin::Sidebar Brand -->
+  <div class="sidebar-brand">
+    <!-- begin::Brand Link --> <a href="#" class="brand-link logo-switch">
+      <!-- begin::Brand Image Small -->
+      <img src="{% static 'img/AdminLTELogo.png' %}" alt="AdminLTE Logo Small" class="brand-image-xl logo-xs opacity-75 shadow" />
+      <!-- end::Brand Image Small -->
+      <!-- begin::Brand Image Large -->
+      <img src="{% static 'img/AdminLTEFullLogo.png' %}" alt="AdminLTE Logo Large" class="brand-image-xs logo-xl opacity-75" />
+      <!-- end::Brand Image Large -->
+    </a> <!-- end::Brand Link -->
+  </div> <!-- Sidebar -->
+  <!-- begin::Sidebar Wrapper -->
+  <div class="sidebar-wrapper">
+    <nav class="mt-2">
+      {% if request.user.is_admin or request.user.is_superuser %}
+        <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
+          <li class="nav-item">
+            <a href="{% url 'core:index' %}" class="nav-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}">
+              <i class="nav-icon bi bi-speedometer"></i>
+              <p>Dashboard</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'portal:teachers' %}" class="nav-link {% if request.resolver_match.url_name == 'teachers' or 'teacher' in request.path %}active{% endif %}">
+              <i class="bi bi-mortarboard-fill"></i>
+              <p>Teachers</p>
+            </a>
+          </li>
+        </ul>
+      {% endif %}
+    </nav>
+  </div>
+</aside>
